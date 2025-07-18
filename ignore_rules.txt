@@ -1,0 +1,7 @@
+*.DS_Store
+InstructionsDocuments/*.docx
+PythonDataAnalysis/__pycache__
+PythonDataAnalysis/advanced_connexin_analysis.py
+ResultsFiles/__pycache__
+QuPathProject
+TestImages

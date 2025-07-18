@@ -1,0 +1,30 @@
+{
+  "analysis_parameters": {
+    "total_objects_threshold": 200000,
+    "max_nuclei_subsample": 100000,
+    "max_connexins_subsample": 200000,
+    "max_association_distance_um": 25.0,
+    "processing_chunk_size": 1000,
+    "cell_radius_multiplier": 3.0,
+    "max_connexins_per_cell": 100,
+    "grid_size_um": 100,
+    "max_objects_per_grid": 1000
+  },
+  "output_settings": {
+    "create_visualizations": false,
+    "save_plots": true,
+    "suppress_console_output": false,
+    "expanded_analysis": false,
+    "output_directory": null
+  },
+  "file_paths": {
+    "master_filepath": "~/Desktop/IHC_Master_File.csv",
+    "results_filepath": "~/Desktop/IHC_Master_File_Results.csv",
+    "default_input_directory": "~/Desktop/NN"
+  },
+  "logging": {
+    "log_level": "INFO",
+    "log_to_file": true,
+    "log_filename": "connexin_analysis.log"
+  }
+}
