@@ -1,15 +1,7 @@
 #!/usr/bin/env python3
 """
 Connexin Data Analysis Module
-============================
 
-This module handles the compilation and statistical analysis of connexin analysis results
-from multiple QuPath exports. It processes JSON report files and combines them with
-master experiment metadata.
-
-Author: [Your Name]
-Date: [Date]
-Version: 2.0
 """
 
 import logging

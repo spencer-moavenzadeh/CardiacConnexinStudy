@@ -1,18 +1,6 @@
 #!/usr/bin/env python3
 """
 Complete Connexin Analysis in Python
-=====================================
-
-This script analyzes connexin gap junctions from QuPath-exported data.
-It calculates all the metrics we discussed: plaque size, lateralization, 
-heterogeneity, and remodeling scores.
-
-Required files:
-- cell_data.csv (exported from QuPath)
-- connexin_data.csv (exported from QuPath)
-
-Usage:
-python connexin_analysis.py
 """
 
 import pandas as pd

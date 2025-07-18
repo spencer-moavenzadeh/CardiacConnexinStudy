@@ -1,18 +1,6 @@
 #!/usr/bin/env python3
 """
-Connexin Analysis Pipeline Controller
-====================================
-
-Top-level script that orchestrates the complete connexin analysis workflow:
-1. Directory selection and file discovery
-2. Individual sample analysis using advanced_connexin_analysis_batched
-3. Results compilation and statistical analysis using connexin_data_analysis
-
-This script is designed to be called from a desktop icon for easy execution.
-
-Author: [Your Name]
-Date: [Date]
-Version: 2.0
+Connexin Pipeline Control
 """
 
 import logging

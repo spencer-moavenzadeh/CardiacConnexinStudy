@@ -1,6 +1,6 @@
 import os
-os.environ["OPENCV_IO_MAX_IMAGE_PIXELS"] = str(pow(2,40)) # Example: Setting limit to 2^40 pixels
-import cv2 # Import cv2 AFTER setting the environment variable
+os.environ["OPENCV_IO_MAX_IMAGE_PIXELS"] = str(pow(2,40))
+import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import ndimage, stats
@@ -750,10 +750,3 @@ def create_individual_overlays(analyzer, image, nuclei_labeled, connexin_labeled
     plt.close()
     
     print(f"Individual overlay images saved to {output_dir}")
-
-# Usage example:
-# import connexin_analysis
-# analyzer = connexin_analysis.ConnexinAnalyzer(pixel_size_um=0.1659)  # Adjust pixel size as needed
-# stats, fig = connexin_analysis.analyze_with_validation("path/to/your/slide.tiff", "output_validation/")
-# print("Analysis complete with validation overlays!")
-# plt.show()  # Display validation panels

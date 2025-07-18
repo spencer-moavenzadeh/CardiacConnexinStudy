@@ -50,7 +50,7 @@ class MegaSlideConnexinAnalyzer:
         """Monitor memory usage and force cleanup if needed"""
         memory_percent = psutil.virtual_memory().percent
         if memory_percent > 85:  # If using >85% memory
-            print(f"⚠️  High memory usage ({memory_percent:.1f}%). Forcing cleanup...")
+            print(f"  High memory usage ({memory_percent:.1f}%). Forcing cleanup...")
             gc.collect()
     
     def get_slide_info(self, image_path: str) -> Dict:
@@ -113,7 +113,7 @@ class MegaSlideConnexinAnalyzer:
                 if tile_width > self.overlap and tile_height > self.overlap:
                     tiles.append((x, y, tile_width, tile_height))
         
-        print(f"📐 Generated {len(tiles)} tiles for processing")
+        print(f" Generated {len(tiles)} tiles for processing")
         return tiles
     
     def separate_stains_fast(self, tile: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
@@ -286,7 +286,7 @@ class MegaSlideConnexinAnalyzer:
         """
         Analyze massive slide using tile-based processing
         """
-        print(f"🚀 Starting analysis of mega slide: {os.path.basename(image_path)}")
+        print(f" Starting analysis of mega slide: {os.path.basename(image_path)}")
         
         # Get slide info
         slide_info = self.get_slide_info(image_path)
@@ -299,7 +299,7 @@ class MegaSlideConnexinAnalyzer:
         all_connexins = []
         processed_tiles = 0
         
-        print(f"🔄 Processing {len(tiles)} tiles...")
+        print(f" Processing {len(tiles)} tiles...")
         
         # Process each tile
         for i, tile_coords in enumerate(tqdm(tiles, desc="Processing tiles")):
@@ -327,19 +327,19 @@ class MegaSlideConnexinAnalyzer:
                     progress_callback(i + 1, len(tiles))
                     
             except Exception as e:
-                print(f"⚠️  Error processing tile {i}: {str(e)}")
+                print(f"  Error processing tile {i}: {str(e)}")
                 continue
         
-        print(f"✅ Processed {processed_tiles}/{len(tiles)} tiles")
+        print(f" Processed {processed_tiles}/{len(tiles)} tiles")
         print(f"   Found {len(all_nuclei)} nuclei")
         print(f"   Found {len(all_connexins)} connexins")
         
         # Classify connexins
-        print("🔄 Classifying connexins...")
+        print(" Classifying connexins...")
         all_connexins = self.classify_connexins_fast(all_connexins, all_nuclei)
         
         # Calculate statistics
-        print("📊 Calculating statistics...")
+        print(" Calculating statistics...")
         stats = self.calculate_mega_stats(all_connexins, all_nuclei, slide_info)
         
         return stats
@@ -415,7 +415,7 @@ class MegaSlideConnexinAnalyzer:
         """
         Create a downsampled overview image for visualization
         """
-        print(f"📸 Creating overview image...")
+        print(f" Creating overview image...")
         
         with Image.open(image_path) as img:
             # Calculate downsample factor
@@ -465,10 +465,10 @@ def analyze_massive_slide(image_path: str, output_dir: str = None, tile_size: in
         results_path = os.path.join(output_dir, "analysis_results.csv")
         df = pd.DataFrame([stats])
         df.to_csv(results_path, index=False)
-        print(f"📊 Results saved to: {results_path}")
+        print(f" Results saved to: {results_path}")
     
     # Print summary
-    print(f"\n🎯 ANALYSIS COMPLETE!")
+    print(f"\n ANALYSIS COMPLETE!")
     print(f"   Slide: {os.path.basename(image_path)}")
     print(f"   Nuclei: {stats['total_nuclei']:,}")
     print(f"   Connexins: {stats['total_connexins']:,}")

@@ -1,20 +1,7 @@
 #!/usr/bin/env python3
 """
 Advanced Connexin Analysis for QuPath Export
-============================================
 
-This script analyzes connexin gap junctions from QuPath-exported CSV data.
-It calculates comprehensive metrics including advanced lateralization analysis.
-
-Input: Single CSV file with both CardiomyocyteNuclei and Connexin objects
-Output: Comprehensive analysis with all requested metrics
-
-Usage:
-python advanced_connexin_analysis_batched.py your_export_file.csv
-
-Author: [Your Name]
-Date: [Date]
-Version: 2.0
 """
 
 import logging
