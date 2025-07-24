@@ -1,5 +1,7 @@
 slide_name,Fibrosis Percentage,scar,group,study
 1-Mar,52.35,center,radiation,sbrt
+1-Apr,80.83,,infarct,sbrt
+1-Aug,6.95,border,radiation,sbrt
 03-10A,46.88,center,radiation,sbrt
 03-10B,14.51,border,radiation,sbrt
 03-10C,0.76,healthy,radiation,sbrt
@@ -37,7 +39,6 @@ slide_name,Fibrosis Percentage,scar,group,study
 03-9A,39.16,center,radiation,sbrt
 03-9B,49.09,center,radiation,sbrt
 03-9C,1.01,healthy,radiation,sbrt
-1-Apr,80.83,,infarct,sbrt
 04-10A,31.31,border,infarct,sbrt
 04-10B,4.43,healthy,infarct,sbrt
 04-10C,35.56,border,infarct,sbrt
@@ -82,7 +83,6 @@ slide_name,Fibrosis Percentage,scar,group,study
 04-8D,2.28,healthy,infarct,sbrt
 04-9A,48.31,border,infarct,sbrt
 04-9C,35.59,border,infarct,sbrt
-1-Aug,6.95,border,radiation,sbrt
 08-10A,12.66,border,radiation,sbrt
 08-10B,2.76,healthy,radiation,sbrt
 08-11A,2.03,healthy,radiation,sbrt
