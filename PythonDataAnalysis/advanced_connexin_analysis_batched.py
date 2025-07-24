@@ -126,7 +126,7 @@ class DataLoader:
             
             # Standardize column names
             if len(self.annotation_data.columns) > 9:
-                self.annotation_data.columns.values[9] = 'Area_um2'
+                self.annotation_data.columns.values[12] = 'Area_um2'
             
             # Filter for tissue annotations
             self.annotation_data = self.annotation_data[self.annotation_data['Name'] == 'Tissue']
@@ -231,7 +231,8 @@ class AdvancedConnexinAnalyzer:
             self.results.update({
                 'annotation_area': annotation_area,
                 'total_connexin_area_per_cell': self.results['total_connexin_area'] / self.results['total_nuclei'],
-                'total_connexins_per_annotation_area': self.results['total_connexin_area'] / annotation_area,
+                'total_connexin_count_per_annotation_area': self.results['total_connexins'] / annotation_area,
+                'total_connexin_area_per_annotation_area': self.results['total_connexin_area'] / annotation_area,
                 'total_nuclei_count_per_annotation_area': self.results['total_nuclei'] / annotation_area,
                 'total_nuclei_area_per_annotation_area': self.nuclei['Nucleus: Area'].sum() / annotation_area
             })

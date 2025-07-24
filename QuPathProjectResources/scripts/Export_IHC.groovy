@@ -118,12 +118,18 @@ def saveAnnotations(file, columns, annotations, imageData) {
     file.withWriter('UTF-8') { writer ->
         writer.writeLine(columns.join(','))
         
+        def server = imageData.getServer()
+        def cal = server.getPixelCalibration()
+        def pixel_width = cal.getPixelWidthMicrons().doubleValue()
+        def pixel_height = cal.getPixelHeightMicrons().doubleValue()
+        
         for (annotation in annotations) {
             def values = []
              for (column in columns) {
-                 def value = getObjectValue(annotation, column, imageData)
+                 def value = getObjectValue(annotation, column, imageData, pixel_width, pixel_height)
                  values.add(value != null ? value.toString(): '')
              }
+             print(values)
              writer.writeLine(values.join(','))
         }
     }
@@ -134,10 +140,15 @@ def saveDetections(file, columns, detections, imageData) {
     file.withWriter('UTF-8') { writer ->
         writer.writeLine(columns.join(','))
         
+        def server = imageData.getServer()
+        def cal = server.getPixelCalibration()
+        def pixel_width = cal.getPixelWidthMicrons().doubleValue()
+        def pixel_height = cal.getPixelHeightMicrons().doubleValue()
+        
         for (detection in detections) {
             def values = []
              for (column in columns) {
-                 def value = getObjectValue(detection, column, imageData)
+                 def value = getObjectValue(detection, column, imageData, pixel_width, pixel_height)
                  values.add(value != null ? value.toString(): '')
              }
              writer.writeLine(values.join(','))
@@ -145,7 +156,7 @@ def saveDetections(file, columns, detections, imageData) {
     }
 }
 
-def getObjectValue(pathObject, columnName, imageData) { 
+def getObjectValue(pathObject, columnName, imageData, pixel_width, pixel_height) { 
     try {
         if (columnName == 'Image') {
             return imageData.getServer().getMetadata().getName()
@@ -173,9 +184,9 @@ def getObjectValue(pathObject, columnName, imageData) {
         } else if (columnName == 'Num Connexin') {
             return pathObject.getChildObjects().findAll { it.getPathClass()?.toString() == 'Connexin' }.size()
         } else if (columnName == 'Area µm^2') {
-            return pathObject.getROI()?.getArea() ? String.format("%.3f", pathObject.getROI().getArea()) : ''
+            return pathObject.getROI()?.getScaledArea(pixel_width, pixel_height) ? String.format("%.3f", pathObject.getROI().getScaledArea(pixel_width, pixel_height)) : ''
         } else if (columnName == 'Perimeter µm') {
-            return pathObject.getROI()?.getLength() ? String.format("%.3f", pathObject.getROI().getLength()) : ''
+            return pathObject.getROI()?.getScaledLength(pixel_width, pixel_height) ? String.format("%.3f", pathObject.getROI().getScaledLength(pixel_width, pixel_height)) : ''
         } else if (columnName == 'Circularity') {
             return pathObject.getMeasurementList().getMeasurementValue("Circularity") != null ? String.format("%.3f", pathObject.getMeasurementList().getMeasurementValue("Circularity")) : ''
         } else if (columnName == 'Max diameter µm') {
